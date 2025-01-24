@@ -30,6 +30,7 @@ def table():
             print(response.status_code)
             print("تست با موفقیت پاشد")
 
+
     else:
         print(f"دریافت صفحه با شکست مواجه شد. کد وضعیت: {response.status_code}")
 
