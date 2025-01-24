@@ -22,7 +22,6 @@ def table():
         # به عنوان مثال، استخراج عنوان صفحه
         title = soup.find('title').text
         print(f"عنوان صفحه: {title}")
-
         # استخراج تگ متا توضیحات
         description = soup.find('meta', attrs={'name': 'description'})
         if description:
