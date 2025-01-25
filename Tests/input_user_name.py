@@ -1,9 +1,10 @@
 import requests
+from Tests.Settings.File_Path_Excell import Excell_file_path
+
 
 def input_user_name():
-
-    url = "https://sso.varzesh3.com/account/login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3D0D996589651C4235B7D40837E8C1DBC2F60410B2C9304298B568%26redirect_uri%3Dhttps%253A%252F%252Fwww.varzesh3.com%252Foidc%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520offline_access%2520videos.api%2520comments.api%2520profile.api%2520world-cup.prediction.api%2520engagement.api%2520notification.api%2520pishbini.api%26state%3Deb455dc7ec4b47f2a80ff1d4838d037a%26code_challenge%3DyR6G24eRAZ188PWV5POdgA48S6p6LJ2YJ-VwBYq67-g%26code_challenge_method%3DS256%26response_mode%3Dquery"
-
+    # استفاده ازfunc اکسل و فراخوانی آن
+    worksheet = Excell_file_path()
     payload = 'ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3D0D996589651C4235B7D40837E8C1DBC2F60410B2C9304298B568%26redirect_uri%3Dhttps%253A%252F%252Fwww.varzesh3.com%252Foidc%252Fcallback%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520offline_access%2520videos.api%2520comments.api%2520profile.api%2520world-cup.prediction.api%2520engagement.api%2520notification.api%2520pishbini.api%26state%3Deb455dc7ec4b47f2a80ff1d4838d037a%26code_challenge%3DyR6G24eRAZ188PWV5POdgA48S6p6LJ2YJ-VwBYq67-g%26code_challenge_method%3DS256%26response_mode%3Dquery&PhoneNumber=09195099029&Username=989195099029&button=login&__RequestVerificationToken=CfDJ8G1n5SS8JqpNvWpZkn1Nt-7cuV2J5BaBxZKYLhTJITzRaXkMbc8FHguZ9PVSFLL2irSfqK3qW16ApaOCzu5ap83xrZx4WrytKYe6dJaXpnsvMhSNsXVb37mABwXrzgYer--CwyJGYSUWRVr11f7gUsA&Password=Gh%40123456'
     headers = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -26,10 +27,6 @@ def input_user_name():
         'Authorization': 'Bearer {{access_token}}'
     }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", worksheet.cell(row=2, column=1).value, headers=headers, data=payload)
 
-    print(response.content)
-    print(response.status_code)
-
-
-input_user_name()
+    return response.status_code
